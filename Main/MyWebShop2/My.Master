@@ -1,0 +1,258 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="My.master.cs" Inherits="MyWebShop2.My" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Pink Shop</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="~/Styles/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/stylesheet/styles.css" />
+    <script language="javascript" type="text/javascript">
+        function clearText(field) {
+            if (field.defaultValue == field.value) field.value = '';
+            else if (field.value == '') field.value = field.defaultValue;
+        }
+    </script>
+    <script language="javascript" type="text/javascript" src="~/scripts/mootools-1.2.1-core.js"></script>
+    <script language="javascript" type="text/javascript" src="~/scripts/mootools-1.2-more.js"></script>
+    <script language="javascript" type="text/javascript" src="~/scripts/slideitmoo-1.1.js"></script>
+    <script language="javascript" type="text/javascript">
+        window.addEvents({
+            'domready': function () { /* thumbnails example , div containers */
+                new SlideItMoo({
+                    overallContainer: 'SlideItMoo_outer',
+                    elementScrolled: 'SlideItMoo_inner',
+                    thumbsContainer: 'SlideItMoo_items',
+                    itemsVisible: 5,
+                    elemsSlide: 3,
+                    duration: 200,
+                    itemsSelector: '.SlideItMoo_element',
+                    itemWidth: 140,
+                    showControls: 1
+                });
+            },
+
+        });
+    </script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+    <div id="wrapper">
+      <div id="menu">
+        <ul>
+          <li><a href="Default.aspx" class="current">   <span>.01</span>Home</a></li>
+          <li><a href="ProductList.aspx">               <span>.02</span>Products</a></li>
+          <li><a href="Cart.aspx">                      <span>.03</span>Cart</a></li>
+          <li><a href="About.aspx">                     <span>.04</span>About</a></li>
+        </ul>
+      </div>
+      <!-- end of menu -->
+      <div id="header_bar">
+        <div id="header">
+          <div class="right"></div>
+          <h1><a href="Default.aspx"> <img src="~/Styles/images/logo.png" alt="" runat="server" /> <span>Online Store Template</span> </a></h1>
+        </div>
+        <div id="search_box">
+          <asp:Panel DefaultButton="searchbutton" runat="server">
+            <input runat="server" type="text" value="Enter keyword here..." name="Keyword" size="10" id="searchfield" onfocus="clearText(this)" onblur="clearText(this)" />
+            <asp:Button ID="searchbutton" runat="server" onclick="searchbutton_Click" />
+          </asp:Panel>
+        </div>
+      </div>
+      <!-- end of header_bar -->
+      <div class="cleaner"></div>
+      <div id="sidebar">
+        <div class="sidebar_top"></div>
+        <div class="sidebar_bottom"></div>
+        <div class="sidebar_section">
+          <h2>Members</h2>
+            <asp:LoginView ID="LoginView" runat="server" EnableViewState="false">
+                <AnonymousTemplate>
+                    <asp:Login ID="LoginUser" runat="server" EnableViewState="false"
+                        RenderOuterTable="false" OnLoggedIn="OnLoggedIn">
+                        <LayoutTemplate>
+                            <asp:Panel DefaultButton="LoginButton" runat="server">
+                                <span class="failureNotification">
+                                    <asp:Literal ID="FailureText" runat="server"></asp:Literal>
+                                </span>
+                                <asp:ValidationSummary ID="LoginUserValidationSummary" runat="server" CssClass="failureNotification" 
+                                     ValidationGroup="LoginUserValidationGroup"/>
+
+                                <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName">Username:</asp:Label>
+                                <asp:TextBox ID="UserName" runat="server" CssClass="input_field"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" 
+                                     CssClass="failureNotification" ErrorMessage="User Name is required." ToolTip="User Name is required." 
+                                     ValidationGroup="LoginUserValidationGroup"></asp:RequiredFieldValidator>
+
+                                <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Password:</asp:Label>
+                                <asp:TextBox ID="Password" runat="server" CssClass="input_field" TextMode="Password"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password" 
+                                     CssClass="failureNotification" ErrorMessage="Password is required." ToolTip="Password is required." 
+                                     ValidationGroup="LoginUserValidationGroup"></asp:RequiredFieldValidator>
+                                <a href="~/Account/Register.aspx" runat="server">Register</a>
+                                <asp:Button ID="LoginButton" runat="server" CommandName="Login"
+                                    Text="Log In" ValidationGroup="LoginUserValidationGroup"/>
+                            </asp:Panel>
+                        </LayoutTemplate>
+                    </asp:Login>
+                </AnonymousTemplate>
+                <LoggedInTemplate>
+                    Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
+                    [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect"
+                        LogoutText="Log Out" LogoutPageUrl="~/" OnLoggingOut="OnLoggingOut" /> ]
+                </LoggedInTemplate>
+            </asp:LoginView>
+        </div>
+        <!-- div class="sidebar_section">
+          <h2>Members</h2>
+          <form action="#" method="get">
+            <label>Username</label>
+            <input type="text" value="" name="username" size="10" class="input_field" />
+            <label>Password</label>
+            <input type="password" value="" name="password" class="input_field" />
+            <a href="#">Register</a>
+            <input type="submit" name="login" value="Login" alt="Login" id="submit_btn" />
+          </form>
+          <div class="cleaner"></div>
+        </div -->
+        <div class="sidebar_section">
+          <h2>Categories</h2>
+
+          <asp:ListView ID="CategoriesView" runat="server" 
+                DataSourceID="CategoriesDataSource">
+            <ItemTemplate>
+                <li>
+                    <a href='ProductList.aspx?categoryId=<%# Eval("CategoryID") %>'><%# Eval("CategoryName") %></a>
+                </li>
+            </ItemTemplate>
+            <LayoutTemplate>
+                <ul runat="server" class="categories_list">
+                    <li id="itemPlaceholder" runat="server"></li>
+                </ul>
+            </LayoutTemplate>
+          </asp:ListView>
+
+          <asp:EntityDataSource ID="CategoriesDataSource" runat="server" 
+                ConnectionString="name=EcommerceEntities" 
+                DefaultContainerName="EcommerceEntities" EnableFlattening="False" 
+                EntitySetName="Categories">
+          </asp:EntityDataSource>
+          <!-- ul class="categories_list">
+            <li><a href="#">Lorem ipsum dolor</a></li>
+            <li><a href="#">Phasellus eget lorem</a></li>
+            <li><a href="#">Sed sit amet sem</a></li>
+            <li><a href="#">Cras eget est vel</a></li>
+            <li><a href="#">Quisque in ligula</a></li>
+            <li><a href="#">Donec a massa dui</a></li>
+            <li><a href="#">Aenean facilisis</a></li>
+            <li><a href="#">Etiam vitae consequat</a></li>
+            <li><a href="#">Aliquam sollicitudin</a></li>
+            <li><a href="#">Nunc fermentum</a></li>
+          </ul -->
+        </div>
+        <!-- div class="sidebar_section">
+          <h2>Discounts</h2>
+          <div class="image_wrapper"><a href="#"><img src="~/Styles/images/image_01.jpg" alt="" /></a></div>
+          <div class="discount"><span>25% off</span> | <a href="#">Read more</a></div>
+        </div -->
+      </div>
+      <!-- end of sidebar -->
+      <div id="content">
+        <div id="latest_product_gallery">
+          <h2>Featured Products</h2>
+          <div id="SlideItMoo_outer">
+            <div id="SlideItMoo_inner">
+              <div id="SlideItMoo_items">
+                <div class="SlideItMoo_element"> <a href="#"> <img src="~/Styles/images/product_01.png" alt="" runat="server" /></a> </div>
+                <div class="SlideItMoo_element"> <a href="#"> <img src="~/Styles/images/product_02.png" alt="" runat="server" /></a> </div>
+                <div class="SlideItMoo_element"> <a href="#"> <img src="~/Styles/images/product_03.png" alt="" runat="server" /></a> </div>
+                <div class="SlideItMoo_element"> <a href="#"> <img src="~/Styles/images/product_04.png" alt="" runat="server" /></a> </div>
+                <!--
+                <div class="SlideItMoo_element"> <a href="#"> <img src="Styles/images/product_05.png" alt="" /></a> </div>
+                <div class="SlideItMoo_element"> <a href="#"> <img src="Styles/images/product_06.png" alt="" /></a> </div>
+                <div class="SlideItMoo_element"> <a href="#"> <img src="Styles/images/product_07.png" alt="" /></a> </div>
+                <div class="SlideItMoo_element"> <a href="#"> <img src="Styles/images/product_08.png" alt="" /></a> </div>
+                -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end of latest_content_gallery -->
+        <!-- div class="content_section">
+          <h2>Welcome to Pink Shop</h2>
+          <p><a href="#">Free CSS Templates</a> are provided by <a href="#">TemplateMo.com</a> for everyone. Feel free to use this template for your websites. Credit goes to <a href="#">Free Photos</a> for photos used in this template. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et quam vitae ipsum vulputate varius vitae semper nunc. Quisque eget elit quis augue pharetra feugiat.</p>
+        </div-->
+        <!--
+        <div class="content_section">
+          <h2>Our Products</h2>
+          <div class="product_box margin_r35">
+            <h3>Phasellus eget lorem</h3>
+            <div class="image_wrapper"> <a href="#"><img src="images/image_02.jpg" alt="" /></a> </div>
+            <p class="price">Price: $350</p>
+            <a href="#">Detail</a> | <a href="#">Buy Now</a> </div>
+          <div class="product_box margin_r35">
+            <h3>Nunc condimentum</h3>
+            <div class="image_wrapper"> <a href="#"><img src="images/image_03.jpg" alt="" /></a> </div>
+            <p class="price">Price: $550</p>
+            <a href="#">Detail</a> | <a href="#">Buy Now</a> </div>
+          <div class="product_box">
+            <h3>Sed sit amet sem</h3>
+            <div class="image_wrapper"> <a href="#"><img src="images/image_04.jpg" alt="" /></a> </div>
+            <p class="price">Price: $250</p>
+            <a href="#">Detail</a> | <a href="#">Buy Now</a> </div>
+          <div class="cleaner"></div>
+          <div class="product_box margin_r35">
+            <h3>Etiam vitae consequat</h3>
+            <div class="image_wrapper"> <a href="#"><img src="images/image_05.jpg" alt="" /></a> </div>
+            <p class="price">Price: $850</p>
+            <a href="#">Detail</a> | <a href="#">Buy Now</a> </div>
+          <div class="product_box margin_r35">
+            <h3> Vivamus at justo</h3>
+            <div class="image_wrapper"> <a href="#"><img src="images/image_06.jpg" alt="" /></a> </div>
+            <p class="price">Price: $450</p>
+            <a href="#">Detail</a> | <a href="#">Buy Now</a> </div>
+          <div class="product_box">
+            <h3> Vivamus at justo</h3>
+            <div class="image_wrapper"> <a href="#"><img src="images/image_07.jpg" alt="" /></a> </div>
+            <p class="price">Price: $350</p>
+            <a href="#">Detail</a> | <a href="#">Buy Now</a> </div>
+          <div class="cleaner"></div>
+          <div class="button_01"><a href="#">View All</a></div>
+        </div>
+        -->
+        <div class="content_section">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+
+            </asp:ContentPlaceHolder>
+        </div>
+      </div>
+      <!-- end of content -->
+    </div>
+    <!-- end of wrapper -->
+    <div id="footer_wrapper">
+      <div id="footer">
+        <ul class="footer_menu">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">CSS Templates</a></li>
+          <li><a href="#">Flash Resources</a></li>
+          <li><a href="#">Gallery</a></li>
+          <li><a href="#">Company</a></li>
+          <li class="last_menu"><a href="#">Contact</a></li>
+        </ul>
+        Copyright &copy; 2048 <a href="#">Your Company Name</a> | Designed by <a href="http://www.templatemo.com/">Free CSS Templates</a></div>
+      <!-- end of footer -->
+    </div>
+    <!-- end of footer_wrapper -->
+    <!--
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    -->
+    </form>
+</body>
+</html>

@@ -1,0 +1,50 @@
+migration "Ecommerce" revision => 1:
+
+	/* Add "Category" table */
+	version 20110726150142:
+		Category:
+			CategoryID		type => "Int32!", primary-key => true
+			CategoryName	type => "String?(50)"
+
+	/* Add "Product" table using native sql */
+	version 20110727164018:
+		execute native-sql upgrade-resource => upgrade, downgrade-resource => downgrade
+
+	/* Tell wizardby that "Product" table exists with its primary key "ProductID" column */
+	baseline:
+		add table Product:
+			ProductID		type => "Int32!", primary-key => true
+			
+	/* Add "CartRecord" table */
+	version 20110727174448:
+		CartRecord:
+			RecordID		type => "Int32!", primary-key => true, identity => true
+			CartID			type => "String?(50)"
+			Quantity		type => "Int32!"
+			ProductID		type => "Int32!", references => Product
+
+			/* Wizardby doesn't support "datetime" type. So we put off creating this column:
+			DateCreated		type => "Time!"
+			*/
+
+	/* Add "DetailedCartRecord" view using native sql */
+	version 20110727205922:
+		execute native-sql upgrade-resource => upgrade, downgrade-resource => downgrade
+
+	/* Add "Order" table */
+	version 20110728180503:
+		Order:
+			OrderID			type => "Int32!", primary-key => true, identity => true
+			CustomerName	type => "String!(256)"
+
+	/* Add "OrderDate" and "ShipDate" columns to the "Order" table */
+	version 20110728184204:
+		execute native-sql upgrade-resource => upgrade, downgrade-resource => downgrade
+
+	/* Add "OrderDetail" table */
+	version 20110728184902:
+		OrderDetail:
+			ID				type => "Int32!", primary-key => true, identity => true
+			OrderID			type => "Int32!", references => Order
+			ProductID		type => "Int32!"
+			Quantity		type => "Int32!"

@@ -1,0 +1,22 @@
+deployment:
+	environment development
+		platform            => sqlserver2008
+		host                => "(local)\sqlexpress"
+		database            => ecommerce
+		integrated-security => true
+
+		/* To automatically create appropriate directories for native sql scripts:
+		*/
+		create-native-sql-directories => true
+		
+	environment staging
+		platform            => sqlserver2008
+		host                => "(local)\sqlexpress"
+		database            => ecommerce_staging
+		integrated-security => true
+		
+	environment production
+		platform            => sqlserver2008
+		host                => "(local)\sqlexpress"
+		database            => ecommerce_production
+		integrated-security => true
