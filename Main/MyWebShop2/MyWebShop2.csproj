@@ -63,12 +63,10 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="AddToCart.aspx" />
-    <Content Include="App_Data\DbMigrations\sqlserver2008\20110727164018\downgrade.sql" />
-    <Content Include="App_Data\DbMigrations\sqlserver2008\20110727164018\upgrade.sql" />
-    <Content Include="App_Data\DbMigrations\sqlserver2008\20110727205922\downgrade.sql" />
-    <Content Include="App_Data\DbMigrations\sqlserver2008\20110727205922\upgrade.sql" />
-    <Content Include="App_Data\DbMigrations\sqlserver2008\20110728184204\downgrade.sql" />
-    <Content Include="App_Data\DbMigrations\sqlserver2008\20110728184204\upgrade.sql" />
+    <Content Include="App_Data\ecommerce.mdf" />
+    <Content Include="App_Data\ecommerce_log.ldf">
+      <DependentUpon>ecommerce.mdf</DependentUpon>
+    </Content>
     <Content Include="Cart.aspx" />
     <Content Include="CheckOut.aspx" />
     <Content Include="ProductDetails.aspx" />
@@ -226,7 +224,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EntityDeploy Include="Data_Access\Ecommerce.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Ecommerce.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
   </ItemGroup>
@@ -235,14 +238,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App_Data\DbMigrations\database.wdi" />
-    <None Include="App_Data\DbMigrations\Ecommerce.mdl" />
-    <EntityDeploy Include="Data_Access\Ecommerce.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Ecommerce.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

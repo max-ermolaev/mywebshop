@@ -19,7 +19,7 @@ using System.Runtime.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("EcommerceModel", "FK_CartRecord_ProductID_Product_ProductID", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MyWebShop2.Data_Access.Product), "CartRecord", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MyWebShop2.Data_Access.CartRecord), true)]
-[assembly: EdmRelationshipAttribute("EcommerceModel", "FK__Product__Categor__30F848ED", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MyWebShop2.Data_Access.Category), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MyWebShop2.Data_Access.Product), true)]
+[assembly: EdmRelationshipAttribute("EcommerceModel", "FK__Product__Categor__693CA210", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MyWebShop2.Data_Access.Category), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MyWebShop2.Data_Access.Product), true)]
 [assembly: EdmRelationshipAttribute("EcommerceModel", "FK_OrderDetail_OrderID_Order_OrderID", "Order", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MyWebShop2.Data_Access.Order), "OrderDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MyWebShop2.Data_Access.OrderDetail), true)]
 
 #endregion
@@ -484,18 +484,18 @@ namespace MyWebShop2.Data_Access
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("EcommerceModel", "FK__Product__Categor__30F848ED", "Product")]
+        [EdmRelationshipNavigationPropertyAttribute("EcommerceModel", "FK__Product__Categor__693CA210", "Product")]
         public EntityCollection<Product> Products
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Product>("EcommerceModel.FK__Product__Categor__30F848ED", "Product");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Product>("EcommerceModel.FK__Product__Categor__693CA210", "Product");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Product>("EcommerceModel.FK__Product__Categor__30F848ED", "Product", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Product>("EcommerceModel.FK__Product__Categor__693CA210", "Product", value);
                 }
             }
         }
@@ -1251,16 +1251,16 @@ namespace MyWebShop2.Data_Access
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("EcommerceModel", "FK__Product__Categor__30F848ED", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("EcommerceModel", "FK__Product__Categor__693CA210", "Category")]
         public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("EcommerceModel.FK__Product__Categor__30F848ED", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("EcommerceModel.FK__Product__Categor__693CA210", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("EcommerceModel.FK__Product__Categor__30F848ED", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("EcommerceModel.FK__Product__Categor__693CA210", "Category").Value = value;
             }
         }
         /// <summary>
@@ -1272,13 +1272,13 @@ namespace MyWebShop2.Data_Access
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("EcommerceModel.FK__Product__Categor__30F848ED", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("EcommerceModel.FK__Product__Categor__693CA210", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("EcommerceModel.FK__Product__Categor__30F848ED", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("EcommerceModel.FK__Product__Categor__693CA210", "Category", value);
                 }
             }
         }
