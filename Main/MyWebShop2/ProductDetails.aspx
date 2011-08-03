@@ -32,7 +32,7 @@
         DefaultContainerName="EcommerceEntities" EnableFlattening="False" 
         EntitySetName="Products" Where="">
         <WhereParameters>
-            <asp:QueryStringParameter Name="ProductID" QueryStringField="ProductId" />
+            <asp:QueryStringParameter Name="ProductID" QueryStringField="ProductId" Type="Int32" />
         </WhereParameters>
     </asp:EntityDataSource>
 </asp:Content>
